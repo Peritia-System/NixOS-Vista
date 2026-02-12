@@ -1,0 +1,14 @@
+- Better commenting 
+- Move some files to be easier to edit 
+- add a better structure for System wide configurations (similar to the Homemanager blogs)
+- add better system configuration aswell as some example flake init commands 
+- add more applications that make sense to be in a light desktop use 
+- add recommended/supported Programms by this theme 
+- add better default keybinds
+- add a clipboard 
+- add a better roadmap 
+- add some own wallpapers
+- add wallpapers that get downloaded 
+- add a more structured showcase VM 
+- add neovim theme (optional for the user)
+- always run `alejandra` on files you configured 
