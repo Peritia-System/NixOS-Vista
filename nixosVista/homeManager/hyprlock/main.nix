@@ -87,6 +87,12 @@
   '';
 in {
   config = lib.mkIf cfg.enable {
+
+
+
+    warnings = [">>> HYPRLOCK ACTIVE <<<"];
+
+
     programs.hyprlock = {
       enable = true;
       extraConfig = hyprlockConfig + "\n" + cfg.extraConfig;
