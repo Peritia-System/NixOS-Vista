@@ -43,6 +43,10 @@
     # Launcher
     "bind = $mainMod, D, exec, $menu"
 
+    # lock 
+    "bind = $mainMod, L, exec, hyprlock"
+
+
     # Workspaces
     "bind = $mainMod, 1, workspace, 1"
     "bind = $mainMod, 2, workspace, 2"
