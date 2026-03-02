@@ -4,37 +4,13 @@
   nixosVista,
   ...
 }: let
-  cfg = nixosVista.hyprland;
+  cfg = config.nixosVista.hyprland;
 in {
-  ############################################################
-  # Options exposed to the user
-  ############################################################
-
-  options.nixosVista.hyprland = {
-    customTop = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-      description = ''
-        Custom Hyprland configuration injected near the top
-        of the generated config.
-      '';
-    };
-
-    customBottom = lib.mkOption {
-      type = lib.types.lines;
-      default = "";
-      description = ''
-        Custom Hyprland configuration injected at the very bottom
-        of the generated config.
-      '';
-    };
-  };
-
   ############################################################
   # Inject into fragment system
   ############################################################
 
-  config = lib.mkIf nixosVista.enable {
+  config = lib.mkIf (config.nixosVista.enable or false) {
     nixosVista.hyprland.fragments.customTop = lib.mkIf (cfg.customTop != "") ''
       ############################################################
       # Your Custom User / nixosVista.hyprland.customTop

@@ -212,6 +212,28 @@ with lib; {
       };
     };
 
+    ############################################################
+    # Hyprland user injection
+    ############################################################
+
+    hyprland.customTop = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        Custom Hyprland configuration injected near the top
+        of the generated config.
+      '';
+    };
+
+    hyprland.customBottom = mkOption {
+      type = types.lines;
+      default = "";
+      description = ''
+        Custom Hyprland configuration injected at the very bottom
+        of the generated config.
+      '';
+    };
+
     hyprland.startup = {
       preset = mkOption {
         type = types.enum ["default" "minimal" "none"];

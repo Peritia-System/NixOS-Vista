@@ -17,6 +17,6 @@
     ./style
 
     # Doesn't work yet:
-    #./customUser.nix
+    ./customUser.nix
   ];
 }
