@@ -7,11 +7,24 @@
   root = nixosVista;
   cfg = root.hyprlock;
 
-  hyprlockConfig = ''
+
+in {
+  config = lib.mkIf cfg.enable {
+
+
+
+   # warnings = [">>> HYPRLOCK ACTIVE <<<"];
+
+
+programs.hyprlock = {
+  enable = true;
+
+  settings = {
 
     general = {
-      disable_loading_bar = true;
-      grace = 0;
+      # does not exsist: 
+      # disable_loading_bar = true;
+      # grace = 0;
       hide_cursor = true;
     };
 
@@ -84,18 +97,10 @@
         valign = "center";
       }
     ];
-  '';
-in {
-  config = lib.mkIf cfg.enable {
+  };
+};
 
 
 
-   # warnings = [">>> HYPRLOCK ACTIVE <<<"];
-
-
-    programs.hyprlock = {
-      enable = true;
-      extraConfig = hyprlockConfig + "\n" + cfg.extraConfig;
-    };
   };
 }

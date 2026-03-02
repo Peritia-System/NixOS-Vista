@@ -85,9 +85,6 @@
         preset = "default";
         extra = [
           #  "bind = SUPER, RETURN, exec, kitty"
-
-
-
         ];
       };
 
@@ -101,29 +98,27 @@
         ];
       };
 
-windowRules = {
-  preset = "default";
+      windowRules = {
+        preset = "default";
 
-  extra = [
-    # Firefox Picture in Picture rules 
-    "windowrule = float 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
-    "windowrule = size 800 450, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
-    "windowrule = pin 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
-   #   "windowrule = nofullscreen 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
-      ];
-};
+        extra = [
+          # Firefox Picture in Picture rules
+          "windowrule = float 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
+          "windowrule = size 800 450, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
+          "windowrule = pin 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
+          #   "windowrule = nofullscreen 1, match:class ^(librewolf)$, match:title ^(Picture-in-Picture)$"
+        ];
+      };
 
-customBottom = ''
-  input {
-    kb_layout = de,us
-    kb_options = grp:alt_shift_toggle
-  }
-'';
-
+      customBottom = ''
+        input {
+          kb_layout = de,us
+          kb_options = grp:alt_shift_toggle
+        }
+      '';
     };
 
-
-hyprlock.enable = true; 
+    hyprlock.enable = true;
 
     ##########################################################
     # Waybar
