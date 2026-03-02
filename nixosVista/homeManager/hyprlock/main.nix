@@ -90,7 +90,7 @@ in {
 
 
 
-    warnings = [">>> HYPRLOCK ACTIVE <<<"];
+   # warnings = [">>> HYPRLOCK ACTIVE <<<"];
 
 
     programs.hyprlock = {

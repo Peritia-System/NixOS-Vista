@@ -2,13 +2,12 @@
   config,
   lib,
   pkgs,
-  nixosVista,
   ...
 }: let
-  root = nixosVista;
+  cfg = config.nixosVista;
 in {
-  config = lib.mkIf root.enable {
-    warnings = [">>> fonts ACTIVE <<<"];
+  config = lib.mkIf cfg.enable {
+#    warnings = [">>> fonts ACTIVE <<<"];
 
     fonts.packages = with pkgs; [
       nerd-fonts.jetbrains-mono

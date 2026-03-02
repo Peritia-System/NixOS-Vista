@@ -10,7 +10,7 @@
     ./wofi
     ./hyprpaper
     ./eww
-
+    ./hyprlock
     ./gtk-theme
   ];
 }
