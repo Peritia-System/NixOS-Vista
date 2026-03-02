@@ -1,11 +1,14 @@
-{ config, lib, nixosVista, ... }:
-
-let
+{
+  config,
+  lib,
+  nixosVista,
+  ...
+}: let
   root = nixosVista;
   cfg = root.hyprlock;
 
   hyprlockConfig = ''
-   
+
     general = {
       disable_loading_bar = true;
       grace = 0;
@@ -82,8 +85,7 @@ let
       }
     ];
   '';
-in
-{
+in {
   config = lib.mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;
