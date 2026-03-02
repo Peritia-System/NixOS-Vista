@@ -4,13 +4,13 @@
   nixosVista,
   ...
 }: let
-  cfg = config.nixosVista.hyprland;
+  cfg = nixosVista.hyprland;
 in {
   ############################################################
   # Inject into fragment system
   ############################################################
 
-  config = lib.mkIf (config.nixosVista.enable or false) {
+  config = lib.mkIf nixosVista.enable {
     nixosVista.hyprland.fragments.customTop = lib.mkIf (cfg.customTop != "") ''
       ############################################################
       # Your Custom User / nixosVista.hyprland.customTop
