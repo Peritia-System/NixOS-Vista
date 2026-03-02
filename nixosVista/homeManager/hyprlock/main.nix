@@ -87,7 +87,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.hyprlock = {
       enable = true;
-      extraConfig = hyprlockConfig;
+      extraConfig = hyprlockConfig + "\n" + cfg.extraConfig;
     };
   };
 }

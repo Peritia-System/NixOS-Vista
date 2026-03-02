@@ -254,6 +254,31 @@ with lib; {
       };
     };
 
+
+
+
+
+
+
+############################################################
+# Lock screen (Hyprlock)
+############################################################
+
+hyprlock = {
+  enable = mkEnableOption "Enable Hyprlock lock screen";
+
+  # Future-proof: allow raw config injection
+  extraConfig = mkOption {
+    type = types.lines;
+    default = "";
+    description = ''
+      Extra Hyprlock configuration appended to the generated config.
+      Useful for custom labels, blur tweaks, etc.
+    '';
+  };
+};
+
+
     waybar = {
       enable = mkOption {
         type = types.bool;
