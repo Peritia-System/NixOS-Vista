@@ -26,6 +26,7 @@
     (get "animation")
     (get "keybinds")
     (get "windowRules")
+    (get "internalClipboard")
     (get "internalScreenshot")
     (get "customBottom")
   ];
