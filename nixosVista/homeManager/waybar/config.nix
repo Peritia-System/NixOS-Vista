@@ -96,7 +96,6 @@
   finalSettings = baseSettings // cfg.settings.extra;
 in {
   programs.waybar = lib.mkIf (cfg.enable && cfg.style.preset != "none") {
-    enable = true;
-    settings = [finalSettings];
+    style = selectedStyle + "\n" + cfg.style.extra;
   };
 }

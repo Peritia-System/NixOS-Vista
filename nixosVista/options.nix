@@ -285,6 +285,12 @@ with lib; {
         description = "Waybar visual preset.";
       };
 
+      style.extra = lib.mkOption {
+        type = lib.types.lines;
+        default = "";
+        description = "Additional CSS appended to the selected Waybar preset.";
+      };
+
       settings.extra = mkOption {
         type = types.attrs;
         default = {};
