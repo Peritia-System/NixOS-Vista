@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./cliphist
     ./hyprland
     ./waybar
     ./wofi

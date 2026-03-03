@@ -4,37 +4,37 @@
   pkgs,
   nixosVista,
   ...
-}:
-
-{
+}: {
   config = lib.mkIf nixosVista.enable {
-
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       wl-clipboard
       cliphist
-      rofi
+      wofi
     ];
 
-    ##########################################################
-    # XDG Portal (IMPORTANT for Firefox / Flatpak)
-    ##########################################################
+    services.cliphist = {
+      enable = true;
 
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
+      # A Wayland session
+      systemdTargets = ["graphical-session.target"];
 
-    services.cliphist.enable = true;
-
+      extraOptions = [
+        "-max-dedupe-search"
+        "10"
+        "-max-items"
+        "500"
+      ];
+      allowImages = true;
+    };
     nixosVista.hyprland.fragments.internalClipboard = ''
       ############################################################
       # Clipboard
       ############################################################
 
-      exec-once = wl-paste --type text --watch cliphist store
-      exec-once = wl-paste --type image --watch cliphist store
-
-      bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
+      #  "services.cliphist.enable = true;" does this
+      #exec-once = wl-paste --type text --watch cliphist store
+      #exec-once = wl-paste --type image --watch cliphist store
+      bind = $mainMod, V, exec, cliphist list | wofi --dmenu --prompt "Clipboard" | cliphist decode | wl-copy
     '';
   };
 }
