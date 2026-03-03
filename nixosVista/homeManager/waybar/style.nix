@@ -487,10 +487,10 @@
   '';
 
   ############################################################
-  # SELECT PRESET
+  # BASE STYLE
   ############################################################
 
-  selectedStyle =
+  baseStyle =
     if cfg.style.preset == "default"
     then defaultStyle
     else if cfg.style.preset == "translucent"
@@ -498,8 +498,15 @@
     else if cfg.style.preset == "opaque"
     then opaqueStyle
     else "";
+
+  ############################################################
+  # FINAL STYLE
+  ############################################################
+
+  finalStyle = baseStyle + cfg.style.extra;
 in {
   programs.waybar = lib.mkIf (cfg.enable && cfg.style.preset != "none") {
-    style = selectedStyle + "\n" + cfg.style.extra;
+    enable = true;
+    style = finalStyle;
   };
 }
