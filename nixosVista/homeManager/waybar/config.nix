@@ -91,12 +91,6 @@
       format-icons = ["" "" "" "" ""];
       tooltip = false;
     };
-
-
-
-
-
-    
   };
 
   finalSettings = baseSettings // cfg.settings.extra;
