@@ -1,10 +1,14 @@
 {
   config,
   lib,
+  pkgs,
   nixosVista,
   ...
-}: {
+}:
+
+{
   config = lib.mkIf nixosVista.enable {
+
     environment.systemPackages = with pkgs; [
       wl-clipboard
       cliphist
@@ -23,15 +27,14 @@
     services.cliphist.enable = true;
 
     nixosVista.hyprland.fragments.internalClipboard = ''
-        ############################################################
-        # This is configuration for the Clipboard
-        ############################################################
+      ############################################################
+      # Clipboard
+      ############################################################
 
       exec-once = wl-paste --type text --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
-      bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
-
+      bind = $mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
     '';
   };
 }
