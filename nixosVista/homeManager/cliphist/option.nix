@@ -6,9 +6,4 @@
 }: let
   cfg = nixosVista.hyprland;
 in {
-
-
-
-
-
 }

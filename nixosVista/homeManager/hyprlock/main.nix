@@ -1,6 +1,9 @@
-{ config, lib, nixosVista, ... }:
-
-let
+{
+  config,
+  lib,
+  nixosVista,
+  ...
+}: let
   root = nixosVista;
   cfg = root.hyprlock;
 
