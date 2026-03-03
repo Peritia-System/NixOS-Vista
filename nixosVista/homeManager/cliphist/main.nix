@@ -49,13 +49,15 @@
       bind = $mainMod, V, exec, cliphist list | wofi --dmenu --prompt "Clipboard" | cliphist decode | wl-copy
 
       bind = $mainMod SHIFT, V, exec, alacritty --class TermClipboardManager -e TermClipboardManager
-      windowrule = float, class:^(TermClipboardManager)$
-      windowrule = center, class:^(TermClipboardManager)$
-      windowrule = size 1000 600, class:^(TermClipboardManager)$
-      windowrule = animation popin, class:^(TermClipboardManager)$
-      windowrule = rounding 12, class:^(TermClipboardManager)$
-      windowrule = noborder, class:^(TermClipboardManager)$
 
+      # TermClipboardManager
+
+      windowrule = float 1, match:class ^(TermClipboardManager)$
+      windowrule = size 1000 600, match:class ^(TermClipboardManager)$
+      windowrule = center 1, match:class ^(TermClipboardManager)$
+      windowrule = animation popin, match:class ^(TermClipboardManager)$
+      windowrule = rounding 20, match:class ^(TermClipboardManager)$
+      windowrule = noborder 1, match:class ^(TermClipboardManager)$
     '';
   };
 }
