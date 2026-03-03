@@ -500,6 +500,6 @@
     else "";
 in {
   programs.waybar = lib.mkIf (cfg.enable && cfg.style.preset != "none") {
-    style = selectedStyle;
+    style = selectedStyle + "\n" + cfg.style.extra;
   };
 }

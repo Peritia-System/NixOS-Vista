@@ -91,11 +91,18 @@
       format-icons = ["" "" "" "" ""];
       tooltip = false;
     };
+
+
+
+
+
+    
   };
 
   finalSettings = baseSettings // cfg.settings.extra;
 in {
   programs.waybar = lib.mkIf (cfg.enable && cfg.style.preset != "none") {
-    style = selectedStyle + "\n" + cfg.style.extra;
+    enable = true;
+    settings = [finalSettings];
   };
 }
