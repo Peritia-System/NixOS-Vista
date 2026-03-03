@@ -38,7 +38,7 @@
     }
 
     label {
-        text = $DATE
+        text = cmd[update:60000] date +"%A, %d %B %Y"
         color = rgba(255,255,255,0.55)
         font_size = 22
         font_family = Noto Sans
