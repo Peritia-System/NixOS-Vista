@@ -18,7 +18,7 @@
       border-radius: 8;
       min-height: 0;
       /* For the taskbar, I prefer simple Noto Sans.*/
-      font-family: Noto Sans;
+      font-family: "Noto Sans Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
       font-weight: bold;
       font-size: 14px;
       padding: 0px;
@@ -191,7 +191,7 @@
       border-radius: 8;
       min-height: 0;
       /* For the taskbar, I prefer simple Noto Sans.*/
-      font-family: Noto Sans;
+      font-family: "Noto Sans Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
       font-weight: bold;
       font-size: 14px;
       padding: 0px;
@@ -364,7 +364,7 @@
       border-radius: 8;
       min-height: 0;
       /* For the taskbar, I prefer simple Noto Sans.*/
-      font-family: Noto Sans;
+      font-family: "Noto Sans Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
       font-weight: bold;
       font-size: 14px;
       padding: 0px;
