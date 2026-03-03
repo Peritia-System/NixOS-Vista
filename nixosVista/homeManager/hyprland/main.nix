@@ -16,16 +16,17 @@
   ordered = [
     (get "header")
     (get "customTop")
-    (get "monitors")
-    (get "startup")
     (get "variables")
     (get "environment")
+    (get "monitors")
+    (get "startup")
     (get "special")
     (get "input")
     (get "style")
     (get "animation")
     (get "keybinds")
     (get "windowRules")
+    (get "internalClipboard")
     (get "customBottom")
   ];
 
