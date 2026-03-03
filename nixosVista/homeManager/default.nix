@@ -9,6 +9,7 @@
     ./hyprland
     ./waybar
     ./wofi
+    ./grim
     ./hyprpaper
     ./eww
     ./hyprlock
