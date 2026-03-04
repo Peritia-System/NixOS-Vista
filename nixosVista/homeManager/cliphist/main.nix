@@ -15,7 +15,8 @@
       bat
       timg
       wofi
-      imagemagick # <-- required for identify
+      imagemagick
+      imv
     ];
 
     home.file.".local/bin/TermClipboardManager" = {
@@ -37,11 +38,16 @@
           if [[ "$MIME" == image/* ]]; then
             DIM=$(identify -format "%wx%h" "$TMP" 2>/dev/null || echo "unknown")
             echo "Image • $MIME • $DIM"
-            echo "----------------------------------------"
-            timg --quiet --center --fit "$TMP"
+            echo "────────────────────────────────────────"
+
+            # Dynamic scaling to preview pane
+            timg --quiet --center \
+                 --fit \
+                 --max-size="''${FZF_PREVIEW_COLUMNS}x''${FZF_PREVIEW_LINES}" \
+                 "$TMP"
           else
             echo "Text • $MIME"
-            echo "----------------------------------------"
+            echo "────────────────────────────────────────"
             bat --style=plain --color=always "$TMP" 2>/dev/null || cat "$TMP"
           fi
 
@@ -50,16 +56,22 @@
 
         export -f preview
 
+        HELP="Enter: Copy & Close | Ctrl-Y: Copy (stay) | DEL: Delete | Ctrl-D: Wipe | Ctrl-O: Open Image | Ctrl-I: Toggle Preview"
+
         while true; do
           SELECTION=$(
             cliphist list | \
             fzf \
               --height=100% \
               --border \
-              --preview 'bash -c "preview {}"' \
+              --header="$HELP" \
+              --preview 'bash -c "preview \"$1\"" _ {}' \
               --preview-window=right:60% \
-              --bind 'del:execute-silent(cliphist delete {} )+reload(cliphist list)' \
-              --bind 'ctrl-d:execute-silent(cliphist wipe)+reload(cliphist list)'
+              --bind 'del:execute-silent(bash -c "cliphist delete \"$1\"" _ {})+reload(cliphist list)' \
+              --bind 'ctrl-d:execute-silent(cliphist wipe)+reload(cliphist list)' \
+              --bind 'ctrl-y:execute-silent(bash -c "cliphist decode \"$1\" | wl-copy" _ {})' \
+              --bind 'ctrl-o:execute-silent(bash -c "cliphist decode \"$1\" > /tmp/clipimg && imv /tmp/clipimg" _ {})' \
+              --bind 'ctrl-i:change-preview-window(hidden)'
           )
 
           [[ -z "$SELECTION" ]] && exit 0
