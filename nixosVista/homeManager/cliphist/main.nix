@@ -26,8 +26,10 @@
         set -euo pipefail
 
         preview() {
+          ID=$(awk '{print $1}' <<< "$1")
+
           TMP=$(mktemp)
-          cliphist decode "$1" > "$TMP" 2>/dev/null || {
+          cliphist decode "$ID" > "$TMP" 2>/dev/null || {
             echo "Failed to decode"
             rm -f "$TMP"
             return
@@ -60,23 +62,23 @@
 
         while true; do
           SELECTION=$(
-            cliphist list | \
-            fzf \
-              --height=100% \
-              --border \
-              --header="$HELP" \
-              --preview 'bash -c "preview \"$1\"" _ {}' \
-              --preview-window=right:60% \
-              --bind 'del:execute-silent(bash -c "cliphist delete \"$1\"" _ {})+reload(cliphist list)' \
-              --bind 'ctrl-d:execute-silent(cliphist wipe)+reload(cliphist list)' \
-              --bind 'ctrl-y:execute-silent(bash -c "cliphist decode \"$1\" | wl-copy" _ {})' \
-              --bind 'ctrl-o:execute-silent(bash -c "cliphist decode \"$1\" > /tmp/clipimg && imv /tmp/clipimg" _ {})' \
-              --bind 'ctrl-i:change-preview-window(hidden)'
-          )
+           cliphist list | \
+           fzf \
+             --height=100% \
+             --border \
+             --header="$HELP" \
+             --preview 'bash -c "preview \"$1\"" _ {}' \
+             --preview-window=right:60% \
+             --bind "del:execute-silent(bash -c 'ID=$(cut -d\" \" -f1 <<< \"$1\"); cliphist delete \"$ID\"' _ {})+reload(cliphist list)" \
+             --bind "ctrl-d:execute-silent(cliphist wipe)+reload(cliphist list)" \
+             --bind "ctrl-y:execute-silent(bash -c 'ID=$(cut -d\" \" -f1 <<< \"$1\"); cliphist decode \"$ID\" | wl-copy' _ {})" \
+             --bind "ctrl-o:execute-silent(bash -c 'ID=$(cut -d\" \" -f1 <<< \"$1\"); cliphist decode \"$ID\" > /tmp/clipimg && imv /tmp/clipimg' _ {})" \
+             --bind "ctrl-i:change-preview-window(hidden)"      )
 
           [[ -z "$SELECTION" ]] && exit 0
 
-          cliphist decode <<< "$SELECTION" | wl-copy
+          ID=$(awk '{print $1}' <<< "$SELECTION")
+          cliphist decode "$ID" | wl-copy
           exit 0
         done
       '';
