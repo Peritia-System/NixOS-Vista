@@ -109,8 +109,7 @@
       windowrule = center 1, match:class ^(TermClipboardManager)$
       windowrule = animation popin, match:class ^(TermClipboardManager)$
       windowrule = rounding 20, match:class ^(TermClipboardManager)$
-      windowrule = noborder 1, match:class ^(TermClipboardManager)$
-      windowrule = blur, match:class ^(TermClipboardManager)$
+      windowrule = blur 2, match:class ^(TermClipboardManager)$
       windowrule = opaque 0.95, match:class ^(TermClipboardManager)$
 
     '';
