@@ -34,12 +34,16 @@
           }
 
           MIME=$(file --mime-type -b "$TMP")
-
           if [[ "$MIME" == image/* ]]; then
             DIM=$(identify -format "%wx%h" "$TMP" 2>/dev/null || echo "unknown")
             echo "Image • $MIME • $DIM"
             echo "----------------------------------------"
-            timg --quiet --center --fit "$TMP"
+
+            COLS=''${FZF_PREVIEW_COLUMNS:-80}
+            ROWS=''${FZF_PREVIEW_LINES:-24}
+
+            timg -g''${COLS}x''${ROWS} -C "$TMP" 2>/dev/null || \
+              echo "[Image preview unavailable]"
           else
             echo "Text • $MIME"
             echo "----------------------------------------"
