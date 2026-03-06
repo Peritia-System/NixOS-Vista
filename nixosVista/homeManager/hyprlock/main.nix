@@ -16,8 +16,8 @@
     background {
         path = screenshot
 
-        blur_passes = 7
-        blur_size = 18
+        blur_passes = 5
+        blur_size = 10
 
         noise = 0.03
         contrast = 1.4
