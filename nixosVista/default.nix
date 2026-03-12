@@ -10,6 +10,7 @@ in {
     ./options.nix
     ./desktop.nix
     ./systemWide
+    ./note.nix
   ];
 
   config = lib.mkIf cfg.enable {

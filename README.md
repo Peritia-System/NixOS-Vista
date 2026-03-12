@@ -1,6 +1,12 @@
 # NixOs-Vista
 A nostalgic Windows Vista-inspired NixOS setup
 
+
+> [!WARNING]  
+> This Repo moved!  
+> Please visit: [The New Repository](https://git.alovely.space/Nyx/NixOS-Vista)  
+
+
 ```txt
 # ========
 # Credit goes alot to diinki 

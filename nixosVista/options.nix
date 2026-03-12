@@ -3,6 +3,14 @@ with lib; {
   # i wanna migrate all the options to the respective file but write in here a list of files that define options
 
   options.nixosVista = {
+
+    ignoreDeprecationNote = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Disable the deprecation warning. And accept potential breakages. Aswell as no Updates.";
+      };
+
+
     ############################################################
     # Core
     ############################################################
